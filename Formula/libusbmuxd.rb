@@ -1,17 +1,11 @@
 class Libusbmuxd < Formula
   desc "Patched usbmux client library for iPhone Wi-Fi discovery on macOS"
   homepage "https://github.com/Shadowsx3/libusbmuxd"
-  url "https://github.com/Shadowsx3/libusbmuxd/releases/download/v2.1.1-wifi.6/libusbmuxd-2.1.1-wifi.6.tar.bz2"
-  version "2.1.1-wifi.6"
-  sha256 "d9916be99d6fee6d8d436dced3435a35acc8d11f3fdb7387d6245e2b22633e80"
+  url "https://github.com/Shadowsx3/libusbmuxd/releases/download/v2.1.1-wifi.7/libusbmuxd-2.1.1-wifi.7.tar.bz2"
+  version "2.1.1-wifi.7"
+  sha256 "c9a0af8a284f529e6f3b98e97908bddd0c1d50f4ee8cbb12edf47c2e15b7a9a7"
   license all_of: ["GPL-2.0-or-later", "LGPL-2.1-or-later"]
   head "https://github.com/Shadowsx3/libusbmuxd.git", branch: "master"
-
-  bottle do
-    root_url "https://github.com/Shadowsx3/homebrew-tools/releases/download/bottles-2026-05-19-v6"
-    rebuild 1
-    sha256 cellar: :any, arm64_tahoe: "c98a4f433d1dfa354be759fcf07820c6be24ce230fcbac8836afdbae9cf44950"
-  end
 
   depends_on "autoconf" => :build if build.head?
   depends_on "automake" => :build if build.head?
