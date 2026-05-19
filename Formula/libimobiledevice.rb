@@ -4,13 +4,12 @@ class Libimobiledevice < Formula
   url "https://github.com/libimobiledevice/libimobiledevice/releases/download/1.4.0/libimobiledevice-1.4.0.tar.bz2"
   sha256 "23cc0077e221c7d991bd0eb02150a0d49199bcca1ddf059edccee9ffd914939d"
   license "LGPL-2.1-or-later"
-  revision 3
+  revision 4
   head "https://github.com/libimobiledevice/libimobiledevice.git", branch: "master"
 
   bottle do
-    root_url "https://github.com/Shadowsx3/homebrew-tools/releases/download/bottles-2026-05-19-v6"
-    rebuild 1
-    sha256 cellar: :any, arm64_tahoe: "9ef0f66766a844cdb54b632c6dc65d61ece137c59f6ba8e15d3a0f6bd518bf99"
+    root_url "https://github.com/Shadowsx3/homebrew-tools/releases/download/bottles-2026-05-19-v9"
+    sha256 cellar: :any, arm64_tahoe: "6137698c4e6266211ceedace3137dabc0ce2f0496c8f49404840198836a5289b"
   end
 
   depends_on "autoconf" => :build
@@ -52,8 +51,15 @@ class Libimobiledevice < Formula
       "Show this iPhone when on Wi-Fi", then click Apply.
 
       Then verify:
+        which ideviceinfo
+        otool -L "$(which ideviceinfo)" | grep -E 'libimobiledevice|libusbmuxd'
         idevice_id -n -l
         ideviceinfo -n -u <UDID> -k DeviceName
+        idevicediagnostics -n -u <UDID> ioregentry AppleSmartBattery
+
+      If discovery lists the device but commands cannot connect to the classic
+      Wi-Fi endpoint, set a Bonjour fallback:
+        export LIBUSBMUXD_NETWORK_DEVICES="<UDID>=<iPhone-hostname>.local"
 
       Disable the CoreDevice fallback for one command with:
         LIBUSBMUXD_COREDEVICE_AUTODISCOVERY=0 idevice_id -n -l
