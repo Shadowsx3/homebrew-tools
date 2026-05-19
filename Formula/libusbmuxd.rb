@@ -9,7 +9,7 @@ class Libusbmuxd < Formula
 
   bottle do
     root_url "https://github.com/Shadowsx3/homebrew-tools/releases/download/bottles-2026-05-19-v10"
-    sha256 cellar: :any, arm64_tahoe: "8204a2bd7c0eb692b8775cf662c328fc6799b6200b3d25fde8e28832fafba3ab"
+    sha256 cellar: :any, arm64_tahoe: "a5f7587366f3e3839121b4425ca8b27a5fb3899646baf025de98f86740b25101"
   end
 
   depends_on "autoconf" => :build if build.head?
