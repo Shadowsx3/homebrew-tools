@@ -4,11 +4,11 @@ class Libimobiledevice < Formula
   url "https://github.com/libimobiledevice/libimobiledevice/releases/download/1.4.0/libimobiledevice-1.4.0.tar.bz2"
   sha256 "23cc0077e221c7d991bd0eb02150a0d49199bcca1ddf059edccee9ffd914939d"
   license "LGPL-2.1-or-later"
-  revision 4
+  revision 5
   head "https://github.com/libimobiledevice/libimobiledevice.git", branch: "master"
 
   bottle do
-    root_url "https://github.com/Shadowsx3/homebrew-tools/releases/download/bottles-2026-05-19-v9"
+    root_url "https://github.com/Shadowsx3/homebrew-tools/releases/download/bottles-2026-05-19-v10"
     sha256 cellar: :any, arm64_tahoe: "6137698c4e6266211ceedace3137dabc0ce2f0496c8f49404840198836a5289b"
   end
 
@@ -58,7 +58,8 @@ class Libimobiledevice < Formula
         idevicediagnostics -n -u <UDID> ioregentry AppleSmartBattery
 
       If discovery lists the device but commands cannot connect to the classic
-      Wi-Fi endpoint, set a Bonjour fallback:
+      Wi-Fi endpoint, set a Bonjour fallback. This mapping is authoritative and
+      overrides Apple/CoreDevice network records for the same UDID:
         export LIBUSBMUXD_NETWORK_DEVICES="<UDID>=<iPhone-hostname>.local"
 
       Disable the CoreDevice fallback for one command with:

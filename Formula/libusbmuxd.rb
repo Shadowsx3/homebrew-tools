@@ -1,14 +1,14 @@
 class Libusbmuxd < Formula
   desc "Patched usbmux client library for iPhone Wi-Fi discovery on macOS"
   homepage "https://github.com/Shadowsx3/libusbmuxd"
-  url "https://github.com/Shadowsx3/libusbmuxd/releases/download/v2.1.1-wifi.9/libusbmuxd-2.1.1-wifi.9.tar.bz2"
-  version "2.1.1-wifi.9"
-  sha256 "267fdbe7cf021ce6027bfde36d67fc43a7b7399fd575babd84d54e9cd97793be"
+  url "https://github.com/Shadowsx3/libusbmuxd/releases/download/v2.1.1-wifi.10/libusbmuxd-2.1.1-wifi.10.tar.bz2"
+  version "2.1.1-wifi.10"
+  sha256 "80f617bc85d58d524805eb1d4ed1c98880d31dd876f103cdfbc1d84fba4cd471"
   license all_of: ["GPL-2.0-or-later", "LGPL-2.1-or-later"]
   head "https://github.com/Shadowsx3/libusbmuxd.git", branch: "master"
 
   bottle do
-    root_url "https://github.com/Shadowsx3/homebrew-tools/releases/download/bottles-2026-05-19-v9"
+    root_url "https://github.com/Shadowsx3/homebrew-tools/releases/download/bottles-2026-05-19-v10"
     sha256 cellar: :any, arm64_tahoe: "8204a2bd7c0eb692b8775cf662c328fc6799b6200b3d25fde8e28832fafba3ab"
   end
 
@@ -37,7 +37,8 @@ class Libusbmuxd < Formula
         otool -L "$(which ideviceinfo)" | grep -E 'libimobiledevice|libusbmuxd'
 
       If automatic Wi-Fi discovery does not connect to the classic lockdown
-      endpoint, set a Bonjour fallback:
+      endpoint, set a Bonjour fallback. This mapping is authoritative and
+      overrides Apple/CoreDevice network records for the same UDID:
         export LIBUSBMUXD_NETWORK_DEVICES="<UDID>=<iPhone-hostname>.local"
     EOS
   end
