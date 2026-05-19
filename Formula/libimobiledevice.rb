@@ -6,6 +6,12 @@ class Libimobiledevice < Formula
   license "LGPL-2.1-or-later"
   head "https://github.com/libimobiledevice/libimobiledevice.git", branch: "master"
 
+  bottle do
+    root_url "https://github.com/Shadowsx3/homebrew-tools/releases/download/bottles-2026-05-19"
+    rebuild 1
+    sha256 cellar: :any, arm64_tahoe: "ca8962cec0ff28271f9b1d7d9151f76f38e29529a1b7869ab995e20ea630d290"
+  end
+
   depends_on "autoconf" => :build
   depends_on "automake" => :build
   depends_on "libtool" => :build
