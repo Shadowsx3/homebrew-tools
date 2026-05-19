@@ -37,9 +37,13 @@ class Libusbmuxd < Formula
         otool -L "$(which ideviceinfo)" | grep -E 'libimobiledevice|libusbmuxd'
 
       If automatic Wi-Fi discovery does not connect to the classic lockdown
-      endpoint, set a Bonjour fallback. This mapping is authoritative and
-      overrides Apple/CoreDevice network records for the same UDID:
-        export LIBUSBMUXD_NETWORK_DEVICES="<UDID>=<iPhone-hostname>.local"
+      endpoint, set an explicit fallback. Get the UDID from Xcode and the
+      local IP from iPhone Settings > Wi-Fi > current network > info:
+        xcrun xctrace list devices
+        export LIBUSBMUXD_NETWORK_DEVICES="<UDID>=<local-ip>"
+
+      This mapping is authoritative and overrides Apple/CoreDevice network
+      records for the same UDID.
     EOS
   end
 

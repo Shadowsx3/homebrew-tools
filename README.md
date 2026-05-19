@@ -30,6 +30,7 @@ which is provided by Xcode/CoreDevice.
 
 ```sh
 sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+xcrun xctrace list devices
 xcrun devicectl list devices
 ```
 
@@ -65,6 +66,53 @@ idevicediagnostics -n -u <UDID> diagnostics GasGauge
 
 When an iPhone is connected over USB, this fork does not also expose the same
 UDID as a Wi-Fi/network device. Unplug USB to test the Wi-Fi path.
+
+## Connect To An iPhone By Local Wi-Fi IP
+
+If discovery lists the iPhone but commands fail to connect, point
+`libusbmuxd` at the phone's classic Wi-Fi lockdown endpoint explicitly.
+
+Get the iPhone UDID from Xcode's device list:
+
+```sh
+xcrun xctrace list devices
+```
+
+or:
+
+```sh
+xcrun devicectl list devices
+```
+
+Get the iPhone local IP from the phone itself:
+
+1. Open `Settings` on the iPhone.
+2. Open `Wi-Fi`.
+3. Tap the info button for the connected Wi-Fi network.
+4. Copy the `IP Address` value.
+
+Set the mapping as `<UDID>=<local-ip>`:
+
+```sh
+export LIBUSBMUXD_NETWORK_DEVICES="00008150-000629380108401C=192.168.1.20"
+```
+
+Persist it for new zsh shells:
+
+```sh
+echo 'export LIBUSBMUXD_NETWORK_DEVICES="00008150-000629380108401C=192.168.1.20"' >> ~/.zshrc
+```
+
+Then open a new terminal or reload the shell and test:
+
+```sh
+source ~/.zshrc
+idevice_id -n -l
+ideviceinfo -n -u 00008150-000629380108401C -k DeviceName
+idevicediagnostics -n -u 00008150-000629380108401C ioregentry AppleSmartBattery
+```
+
+Replace the example UDID and IP with the values from your own iPhone.
 
 ## Runtime Controls
 

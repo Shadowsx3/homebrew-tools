@@ -53,14 +53,18 @@ class Libimobiledevice < Formula
       Then verify:
         which ideviceinfo
         otool -L "$(which ideviceinfo)" | grep -E 'libimobiledevice|libusbmuxd'
+        xcrun xctrace list devices
         idevice_id -n -l
         ideviceinfo -n -u <UDID> -k DeviceName
         idevicediagnostics -n -u <UDID> ioregentry AppleSmartBattery
 
       If discovery lists the device but commands cannot connect to the classic
-      Wi-Fi endpoint, set a Bonjour fallback. This mapping is authoritative and
-      overrides Apple/CoreDevice network records for the same UDID:
-        export LIBUSBMUXD_NETWORK_DEVICES="<UDID>=<iPhone-hostname>.local"
+      Wi-Fi endpoint, set an explicit fallback. Get the local IP from iPhone
+      Settings > Wi-Fi > current network > info:
+        export LIBUSBMUXD_NETWORK_DEVICES="<UDID>=<local-ip>"
+
+      This mapping is authoritative and overrides Apple/CoreDevice network
+      records for the same UDID.
 
       Disable the CoreDevice fallback for one command with:
         LIBUSBMUXD_COREDEVICE_AUTODISCOVERY=0 idevice_id -n -l
