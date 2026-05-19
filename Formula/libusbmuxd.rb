@@ -7,6 +7,12 @@ class Libusbmuxd < Formula
   license all_of: ["GPL-2.0-or-later", "LGPL-2.1-or-later"]
   head "https://github.com/Shadowsx3/libusbmuxd.git", branch: "master"
 
+  bottle do
+    root_url "https://github.com/Shadowsx3/homebrew-tools/releases/download/bottles-2026-05-19-v5"
+    rebuild 1
+    sha256 cellar: :any, arm64_tahoe: "0337e7135e3ebaafcf9520841f25f6d8ed9a29b12754f9e221e6c28adfbc4974"
+  end
+
   depends_on "autoconf" => :build if build.head?
   depends_on "automake" => :build if build.head?
   depends_on "libtool" => :build if build.head?
