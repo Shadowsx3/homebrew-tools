@@ -6,7 +6,7 @@ network device.
 
 The tap installs:
 
-- `libusbmuxd`: patched `libusbmuxd` with Xcode/CoreDevice fallback discovery.
+- `libusbmuxd`: patched `libusbmuxd` with fast Bonjour/Xcode and CoreDevice fallback discovery.
 - `libimobiledevice`: `libimobiledevice` command-line tools linked against the patched `libusbmuxd`.
 
 ## Install
@@ -115,6 +115,11 @@ idevicediagnostics -n -u 00008150-000629380108401C ioregentry AppleSmartBattery
 Replace the example UDID and IP with the values from your own iPhone.
 
 ## Runtime Controls
+
+By default, `libusbmuxd` uses the fast Apple usbmuxd network list when it is
+available. If no network device is reported and no explicit fallback is set, it
+can discover `_apple-mobdev2._tcp` Bonjour endpoints and match them to paired
+Xcode UDIDs by device name before falling back to CoreDevice.
 
 Disable CoreDevice fallback discovery for one command:
 
