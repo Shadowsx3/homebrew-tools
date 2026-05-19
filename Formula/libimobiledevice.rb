@@ -9,7 +9,7 @@ class Libimobiledevice < Formula
 
   bottle do
     root_url "https://github.com/Shadowsx3/homebrew-tools/releases/download/bottles-2026-05-19-v10"
-    sha256 cellar: :any, arm64_tahoe: "6137698c4e6266211ceedace3137dabc0ce2f0496c8f49404840198836a5289b"
+    sha256 cellar: :any, arm64_tahoe: "a85362bf27c2bfa6da7f8dc7d0729ef892a56923b646181a4bb52210316593ea"
   end
 
   depends_on "autoconf" => :build
