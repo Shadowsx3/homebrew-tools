@@ -1,13 +1,13 @@
 # Shadowsx3 Homebrew Tools
 
-Homebrew tap for `libimobiledevice` tools that can run iPhone commands over
-Wi-Fi on macOS when Apple's usbmuxd does not report the paired iPhone as a
+Homebrew tap for drop-in `libimobiledevice` tools that can run iPhone commands
+over Wi-Fi on macOS when Apple's usbmuxd does not report the paired iPhone as a
 network device.
 
 The tap installs:
 
-- `libusbmuxd-wifi`: patched `libusbmuxd` with Xcode/CoreDevice fallback discovery.
-- `libimobiledevice-wifi`: `libimobiledevice` command-line tools linked against `libusbmuxd-wifi`.
+- `libusbmuxd`: patched `libusbmuxd` with Xcode/CoreDevice fallback discovery.
+- `libimobiledevice`: `libimobiledevice` command-line tools linked against the patched `libusbmuxd`.
 
 ## Install
 
@@ -37,15 +37,18 @@ Install the tap and tools:
 
 ```sh
 brew tap Shadowsx3/tools
-brew install libimobiledevice-wifi
+brew install Shadowsx3/tools/libimobiledevice
 ```
 
-The formulas are keg-only to avoid overwriting Homebrew's stock
-`libusbmuxd` and `libimobiledevice`. Add the Wi-Fi-enabled tools to your shell:
+This installs the patched formulas as drop-in replacements for Homebrew/core's
+`libusbmuxd` and `libimobiledevice`.
+
+If Homebrew already has the stock formulas installed and reports a conflict,
+replace them explicitly:
 
 ```sh
-echo 'export PATH="$(brew --prefix libimobiledevice-wifi)/bin:$PATH"' >> ~/.zshrc
-source ~/.zshrc
+brew uninstall libimobiledevice libusbmuxd
+brew install Shadowsx3/tools/libimobiledevice
 ```
 
 Verify:
