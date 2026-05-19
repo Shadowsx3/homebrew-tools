@@ -18,6 +18,7 @@ class LibusbmuxdWifi < Formula
   depends_on "libplist"
 
   def install
+    (buildpath/".tarball-version").write version
     system "./autogen.sh", "--disable-silent-rules", *std_configure_args
     system "make", "install"
   end
