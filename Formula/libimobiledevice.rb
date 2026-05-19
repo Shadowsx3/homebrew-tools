@@ -4,13 +4,8 @@ class Libimobiledevice < Formula
   url "https://github.com/libimobiledevice/libimobiledevice/releases/download/1.4.0/libimobiledevice-1.4.0.tar.bz2"
   sha256 "23cc0077e221c7d991bd0eb02150a0d49199bcca1ddf059edccee9ffd914939d"
   license "LGPL-2.1-or-later"
-  revision 5
+  revision 6
   head "https://github.com/libimobiledevice/libimobiledevice.git", branch: "master"
-
-  bottle do
-    root_url "https://github.com/Shadowsx3/homebrew-tools/releases/download/bottles-2026-05-19-v10"
-    sha256 cellar: :any, arm64_tahoe: "a85362bf27c2bfa6da7f8dc7d0729ef892a56923b646181a4bb52210316593ea"
-  end
 
   depends_on "autoconf" => :build
   depends_on "automake" => :build
