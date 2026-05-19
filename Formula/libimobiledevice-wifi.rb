@@ -46,6 +46,9 @@ class LibimobiledeviceWifi < Formula
       For iPhone Wi-Fi command discovery, use the full Xcode app and select it:
         sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
 
+      In Finder, connect the iPhone over USB, select it under Locations, enable
+      "Show this iPhone when on Wi-Fi", then click Apply.
+
       Then verify:
         idevice_id -n -l
         ideviceinfo -n -u <UDID> -k DeviceName

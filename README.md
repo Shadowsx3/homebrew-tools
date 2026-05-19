@@ -11,6 +11,20 @@ The tap installs:
 
 ## Install
 
+### Enable iPhone Wi-Fi Access In Finder
+
+1. Connect the iPhone to the Mac with USB.
+2. Open Finder and select the iPhone under `Locations` in the sidebar.
+3. If prompted, click `Trust` in Finder and tap `Trust This Computer` on the iPhone.
+4. In the `General` tab, enable `Show this iPhone when on Wi-Fi`.
+5. Click `Apply`.
+6. Keep the iPhone and Mac on the same Wi-Fi network.
+
+If the iPhone does not appear in Finder, open `Finder > Settings > Sidebar` and
+enable `CDs, DVDs, and iOS Devices`.
+
+### Install Xcode/CoreDevice
+
 Install the full Xcode app first. The Wi-Fi fallback uses `xcrun devicectl`,
 which is provided by Xcode/CoreDevice.
 
